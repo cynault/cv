@@ -1,0 +1,296 @@
+%% cv.tex
+%% Copyright 2017 Zeyi Fan
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+%
+% The Current Maintainer of this work is Zeyi Fan.
+%
+% This work consists of only the file cv.tex
+
+\documentclass{ctexrep}
+\usepackage[top=.4in, bottom=.0in, left=3in, right=0.4in,marginparwidth=2.5in]{geometry}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{fontspec}
+\usepackage{titlesec}
+\usepackage{pstricks}
+\usepackage{amssymb}
+\usepackage{paralist}
+
+%\usepackage[pdfauthor={Zeyi Fan},
+            %pdftitle={Zeyi Fan's Resume},
+            %pdfkeywords={}]{hyperref}
+\usepackage{hyperref}
+
+\definecolor{mygray}{gray}{0.95}
+\definecolor{lightdark}{gray}{0.55}
+\definecolor{dark}{gray}{0.3}
+\definecolor{skillbg}{gray}{0.7}
+
+\newcommand{\amount}{5.7in}
+\setcounter{section}{-1}
+
+\linespread{1.2}
+\pagenumbering{gobble}
+
+\renewcommand{\labelitemi}{$\blacksquare$}
+\renewenvironment{itemize}[1]{\begin{compactitem}#1}{\end{compactitem}}
+
+% Helpers
+
+\newcommand\twodigits[1]{%
+   \ifnum#1<10 0#1\else #1\fi
+}
+
+%\newcommand\hl[1]{{\ralewaysb #1}}
+\newcommand\hl[1]{#1}
+
+
+% Fonts
+
+\newfontfamily\raleway{Raleway}
+\newfontfamily\ralewaym{Raleway Medium}
+\newfontfamily\ralewaysb{Raleway SemiBold}
+\newfontfamily\ralewayb{Raleway Bold}
+\newfontfamily\ralewayeb{Raleway ExtraBold}
+\newfontfamily\ralewaybb{Raleway Black}
+
+\setmainfont{Raleway}
+
+
+% Styles
+\newcommand{\name}[2]{
+    \begin{center}
+        \Huge{
+            \ralewayeb{#1 #2}
+        }
+    \end{center}
+}
+
+\newcommand{\tagline}[1]{
+    \begin{center}
+        \large{
+            \color{dark}
+            \ralewaysb{#1}
+        }
+        \vspace{.2em}
+    \end{center}
+}
+
+\renewcommand{\thesection}{\twodigits{\arabic{section}}.}
+
+\titleformat{\section}
+[hang]
+{\ralewaysb\large\color{dark}}
+{}
+{.0em}
+{}
+[{\titlerule[0.8pt]}]
+
+\titlespacing*{\section}{0pt}{4pt}{10pt}
+
+\setlength{\TPHorizModule}{1mm}
+\setlength{\TPVertModule}{1mm}
+\setlength{\parindent}{0mm}
+
+\newcommand{\contactline}[2]{
+    \ralewaysb{#1} & \raleway{#2}
+}
+
+\newcommand{\skill}[2]{
+    \vspace{.2em}
+    \ralewayb{#1}
+
+    \psset{xunit=0.197\linewidth, yunit=5pt}
+    \begin{pspicture}[showgrid=false](5,1)
+        \psline[linecolor=skillbg](0,0.5)(5,0.5)
+        \psline[linecolor=skillbg,arrows=|-|](1,0.5)(2,0.5)
+        \psline[linecolor=skillbg,arrows=|-|](3,0.5)(4,0.5)
+        \psline[linecolor=skillbg,arrows=-|](0,0.5)(5,0.5)
+
+        \psline[linecolor=black,arrows=|-|](0,0.5)(#2,0.5)
+    \end{pspicture}
+}
+
+\newcommand{\block}[3]{
+    {\large\ralewayb #1}
+
+    \ralewaym{\color{lightdark}#2}
+
+    \raleway{#3}
+}
+
+\begin{document}
+
+% background
+
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[mygray] (current page.south west) rectangle ([xshift=-\amount]current page.north east);
+\end{tikzpicture}
+
+% Side Bar
+
+\begin{textblock}{58.5}(6,7.7)
+    \name{王若愚}
+
+    %\tagline{Student \& Developer}
+
+    \section{关于我}
+
+    \color{dark}
+
+    王若愚是广州大学的研二研究生，专业是网络空间安全，ctf pwn手，他对网络安全攻防充满热情，对待工作认真，重视实践操作。技术栈为二进制攻防、编程语言相关技术，熟悉iot的漏洞利用，对Android、Windows下的攻防有过实践操作，自学能力强。
+
+    \section{联系方式}
+
+    \renewcommand{\arraystretch}{1.1}
+
+    \begin{tabular}{rl}
+        \contactline{Phone}{(86) 13388281278} \\
+        \contactline{Email}{cynault@163.com} \\
+        
+
+        
+    \end{tabular}
+
+    \section{技能}
+
+    % 编程语言
+
+    
+    \skill{C/C++}{4}
+
+
+    
+    \skill{Python}{3}
+
+
+    % 系统平台
+    \skill{Linux}{4}
+
+    \skill{windows}{2}
+
+    \skill{Android}{3}
+   
+    % 工具
+    \skill{gdb}{4}
+
+    \skill{IDA Pro}{4}
+
+    \skill{qemu}{2}
+
+    \skill{pwntools}{3}
+
+    \skill{Git}{3}
+
+    
+    \skill{BurpSuite}{3}
+
+    \skill{ARM}{3}
+
+    \skill{X86/64}{4}
+
+
+\end{textblock}
+
+% Main
+
+\vspace{-25pt}  % Change this value to adjust the position of the right
+\section{教育背景}
+
+\block{广州大学}
+{网络空间安全                                        \hfill 2021.09.01 - 至今}
+{
+    相关课程: 安全协议；网络安全综合实验；密码学。
+}
+
+\vspace{.5em}
+
+\block{沈阳工业大学}
+{智能科学与技术                             \hfill 2016.09.01 - 2020.06.01}
+{
+    相关课程: 神经网络；机器学习；自动控制原理。
+}
+
+
+
+\section{项目经历}
+
+\block{物联网设备漏洞检测 \hfill 2023.2 - 2023.4}{}{ 
+    \begin{itemize}[-]
+        \item 物联网所内项目，对存在漏洞设备进行攻击利用。
+        \item 对cisco设备(RV110、RV340)、小米设备(R3P)的漏洞进行分析评估。
+        \item 对现有的poc进行分析学习复现(RV110、R3P)。
+        \item 对已公布漏洞，但未有系统形成命令执行EXP的设备，进行分析，对其多个漏洞进行系统梳理，构造最终命令执行python脚本(RV340)。
+    \end{itemize}
+}
+
+
+
+
+\vspace{.5em}
+
+\block{基于管道进程迁移项目 \hfill 2023.1 - 2023.2}{}{ 
+    \begin{itemize}[-]
+        \item 白帽社区红队持久化权限维持工具。
+        \item 目标是实现进程注入后，目标进程挂掉后能进行迁移，自动进行注入。
+        \item 基于C++语言，进程注入技术，以及管道技术。
+        \item 涉及进程通信，设计一套进程间主服务端灵活转换的方案。
+    \end{itemize}
+}
+
+\vspace{.5em}
+
+
+
+\block{蜜罐项目 \hfill 2022.12}{}{ 
+    \begin{itemize}[-]
+        \item datacon的网络流量检测项目
+        \item 使用C\#语言，asp.net core框架，规则匹配，实现了对漏扫工具扫描结果的混淆。
+        \item 抓取漏扫工具的攻击流量，分析出大部分流量来自于xray。
+        \item 对poc进行分析，其验证漏洞的方式，如命令执行验证，关键字验证，存储型验证。
+    \end{itemize}
+}
+
+
+
+
+
+
+\vspace{.5em}
+
+
+\block{小米设备协议安全评估 {\hfill 2022.4 - 2022.6}}{}{
+    \begin{itemize}[-]
+        \item 安全协议实验项目
+        \item 发现小米设备存在协议漏洞。
+        \item 小米S1台灯作为目标设备，BurpSuite抓包，分析手机APP米家、台灯以及云服务器的通信过程。
+        \item 认证过程存在缺陷，设备id泄露后，攻击者拥有控制权。
+        
+    \end{itemize}
+}
+
+\section{获奖情况}
+
+\ralewaysb 三等奖 \raleway 第一届中国研究生网络安全创新大赛\hfill 2022.11 
+
+\ralewaysb 二等奖 \raleway 第十五届全国大学生信息安全竞赛华南赛区\hfill 2022.9
+
+\ralewaysb 三等奖 \raleway CICV智能网联汽车漏洞挖掘赛（线上、线下）\hfill 2022.5 、2022.8
+
+\section{教学服务}
+
+\ralewaysb 讲师 \raleway ctf-pwn攻与防，无锡税务局\hfill 2022.8
+
+\ralewaysb 助教 \raleway  计算机网络，广州大学  \hfill 2022.3 - 2022.7 
+
+\end{document}
